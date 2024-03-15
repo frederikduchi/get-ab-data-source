@@ -10,7 +10,7 @@ async function getData(dataSourceId, offset = 0) {
         });
 
         if (!response.ok) {
-            throw new Error('Network response was not ok');
+            //throw new Error('Network response was not ok');
         }
 
         const responseData = await response.json();
@@ -20,12 +20,14 @@ async function getData(dataSourceId, offset = 0) {
             const nextOffset = offset + 20;
             return getData(dataSourceId, nextOffset);
         }else{
-            return data;
+            const temp = data;
+            data = [];
+            return temp;
         }
         
     } catch (error) {
         console.error('Error fetching data:', error);
-        throw error; // Propagate the error
+        //throw error; // Propagate the error
     }
 }
 
